@@ -187,3 +187,9 @@ nav{min-width:0}
 :root[data-theme="pink"] .ph-violet{display:none}
 :root[data-theme="pink"] .ph-pink{display:block}
 @media (max-width:820px){.photo{width:min(100%,300px)}}
+
+/* Project screenshot */
+.shot{margin:0 0 1.8rem;overflow:hidden;border:1px solid var(--line2);border-radius:16px;background:var(--surface);box-shadow:0 30px 60px -36px var(--glow)}
+.shot img{display:block;width:100%;height:auto;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.shot:hover img{transform:scale(1.03)}
+.shot figcaption{padding:.75rem 1rem;color:var(--muted);font-size:.9rem}
