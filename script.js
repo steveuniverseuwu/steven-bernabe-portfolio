@@ -233,67 +233,13 @@
     document.getElementById('viewerClose').addEventListener('click', () => viewer.close());
     viewer.addEventListener('close', () => root.classList.remove('lock'));
   }
-  // ---- Downloads (resume, CV, certificates): ask where to save when the browser can, otherwise force a download ----
-  const blobs = {};
-  function getBlob(href) {
-    if (!blobs[href]) blobs[href] = fetch(href).then((r) => (r.ok ? r.blob() : null)).catch(() => null);
-    return blobs[href];
-  }
-  function fileName(href) { return decodeURIComponent(href.split('/').pop().split('?')[0]); }
-  function plainDownload(href) {
-    const t = document.createElement('a');
-    t.href = href;
-    t.download = fileName(href);
-    document.body.appendChild(t);
-    t.click();
-    t.remove();
-  }
-  function forceDownload(blob, name) {
-    const u = URL.createObjectURL(blob);
-    const t = document.createElement('a');
-    t.href = u;
-    t.download = name;
-    document.body.appendChild(t);
-    t.click();
-    t.remove();
-    setTimeout(() => URL.revokeObjectURL(u), 4000);
-  }
-  async function saveFile(href) {
-    const name = fileName(href);
-    const blob = await getBlob(href);
-    if (!blob) { plainDownload(href); return; } // page opened from a folder: ordinary link
-    const pdf = /\.pdf$/i.test(name);
-    const type = pdf
-      ? { description: 'PDF document', accept: { 'application/pdf': ['.pdf'] } }
-      : { description: 'Word document', accept: { 'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'] } };
-    if (window.showSaveFilePicker) {
-      try {
-        const handle = await window.showSaveFilePicker({ suggestedName: name, types: [type] });
-        const out = await handle.createWritable();
-        await out.write(blob);
-        await out.close();
-      } catch (err) {
-        if (!err || err.name !== 'AbortError') forceDownload(blob, name); // cancelled = do nothing
-      }
-      return;
-    }
-    forceDownload(blob, name);
-  }
-  function wireDownload(a, hrefOf) {
-    a.addEventListener('click', (e) => {
-      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
-      e.preventDefault();
-      saveFile(new URL(hrefOf(), document.baseURI).href);
-    });
-  }
-  document.querySelectorAll('a[href$=".docx"]').forEach((a) => {
-    getBlob(a.href);
-    wireDownload(a, () => a.href);
+  // ---- Certificate badge: if the image file is ever missing, show the award icon instead of a broken picture ----
+  document.querySelectorAll('.cert-ico img').forEach((img) => {
+    const swap = () => {
+      const icon = document.querySelector('.cert-ico svg');
+      if (icon) img.replaceWith(icon.cloneNode(true));
+    };
+    if (img.complete && img.naturalWidth === 0) swap();
+    else img.addEventListener('error', swap);
   });
-  document.querySelectorAll('a[data-cert]').forEach((a) => {
-    const prefetch = () => getBlob(new URL(a.getAttribute('href'), document.baseURI).href);
-    ['mouseenter', 'focus', 'touchstart'].forEach((ev) => a.addEventListener(ev, prefetch, { passive: true }));
-  });
-  const pdfBtn = document.getElementById('viewerPdf');
-  if (pdfBtn) wireDownload(pdfBtn, () => pdfBtn.getAttribute('href'));
 })();
