@@ -210,4 +210,90 @@
       }, 250);
     });
   });
+  // ---- Certificate viewer: opens in a box over the page ----
+  const viewer = document.getElementById('viewer');
+  if (viewer && typeof viewer.showModal === 'function') {
+    const vImg = document.getElementById('viewerImg');
+    const vTitle = document.getElementById('viewerTitle');
+    const vPdf = document.getElementById('viewerPdf');
+    document.querySelectorAll('a[data-cert]').forEach((a) => {
+      a.addEventListener('mouseenter', () => { new Image().src = a.dataset.cert; });
+      a.addEventListener('click', (e) => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return; // let "open in new tab" work
+        e.preventDefault();
+        vImg.src = a.dataset.cert;
+        vImg.alt = 'Certificate: ' + a.dataset.title;
+        vTitle.textContent = a.dataset.title;
+        vPdf.href = a.getAttribute('href');
+        viewer.showModal();
+        root.classList.add('lock');
+      });
+    });
+    viewer.addEventListener('click', (e) => { if (e.target === viewer) viewer.close(); });
+    document.getElementById('viewerClose').addEventListener('click', () => viewer.close());
+    viewer.addEventListener('close', () => root.classList.remove('lock'));
+  }
+  // ---- Downloads (resume, CV, certificates): ask where to save when the browser can, otherwise force a download ----
+  const blobs = {};
+  function getBlob(href) {
+    if (!blobs[href]) blobs[href] = fetch(href).then((r) => (r.ok ? r.blob() : null)).catch(() => null);
+    return blobs[href];
+  }
+  function fileName(href) { return decodeURIComponent(href.split('/').pop().split('?')[0]); }
+  function plainDownload(href) {
+    const t = document.createElement('a');
+    t.href = href;
+    t.download = fileName(href);
+    document.body.appendChild(t);
+    t.click();
+    t.remove();
+  }
+  function forceDownload(blob, name) {
+    const u = URL.createObjectURL(blob);
+    const t = document.createElement('a');
+    t.href = u;
+    t.download = name;
+    document.body.appendChild(t);
+    t.click();
+    t.remove();
+    setTimeout(() => URL.revokeObjectURL(u), 4000);
+  }
+  async function saveFile(href) {
+    const name = fileName(href);
+    const blob = await getBlob(href);
+    if (!blob) { plainDownload(href); return; } // page opened from a folder: ordinary link
+    const pdf = /\.pdf$/i.test(name);
+    const type = pdf
+      ? { description: 'PDF document', accept: { 'application/pdf': ['.pdf'] } }
+      : { description: 'Word document', accept: { 'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'] } };
+    if (window.showSaveFilePicker) {
+      try {
+        const handle = await window.showSaveFilePicker({ suggestedName: name, types: [type] });
+        const out = await handle.createWritable();
+        await out.write(blob);
+        await out.close();
+      } catch (err) {
+        if (!err || err.name !== 'AbortError') forceDownload(blob, name); // cancelled = do nothing
+      }
+      return;
+    }
+    forceDownload(blob, name);
+  }
+  function wireDownload(a, hrefOf) {
+    a.addEventListener('click', (e) => {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+      e.preventDefault();
+      saveFile(new URL(hrefOf(), document.baseURI).href);
+    });
+  }
+  document.querySelectorAll('a[href$=".docx"]').forEach((a) => {
+    getBlob(a.href);
+    wireDownload(a, () => a.href);
+  });
+  document.querySelectorAll('a[data-cert]').forEach((a) => {
+    const prefetch = () => getBlob(new URL(a.getAttribute('href'), document.baseURI).href);
+    ['mouseenter', 'focus', 'touchstart'].forEach((ev) => a.addEventListener(ev, prefetch, { passive: true }));
+  });
+  const pdfBtn = document.getElementById('viewerPdf');
+  if (pdfBtn) wireDownload(pdfBtn, () => pdfBtn.getAttribute('href'));
 })();

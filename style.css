@@ -193,3 +193,34 @@ nav{min-width:0}
 .shot img{display:block;width:100%;height:auto;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
 .shot:hover img{transform:scale(1.03)}
 .shot figcaption{padding:.75rem 1rem;color:var(--muted);font-size:.9rem}
+
+/* Certificates */
+.certs{display:grid;gap:.8rem;margin:.7rem 0 0;padding:0;list-style:none}
+.certs li{display:flex;align-items:center;gap:1rem;padding:.8rem 1rem;background:var(--surface);border:1px solid var(--line);border-radius:14px}
+.cert-ico{display:grid;place-items:center;flex:none;width:3.8rem;height:3.8rem;overflow:hidden;border-radius:12px;background:var(--soft);color:var(--accent)}
+.cert-ico svg{width:1.7rem;height:1.7rem;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.cert-ico img{width:100%;height:100%;object-fit:contain;background:#fff}
+.cert-txt b{display:block}
+.cert-txt span{display:block;color:var(--muted);font-size:.95rem}
+.cert-txt a{display:inline-block;margin-top:.2rem;font-size:.95rem;font-weight:600}
+@media (max-width:560px){.certs li{align-items:flex-start}}
+
+/* Certificate viewer: a box over the page, with the website still visible behind it */
+html.lock{overflow:hidden}
+.viewer{width:min(1000px,94vw);max-height:92vh;padding:0;overflow:hidden;border:1px solid var(--line2);border-radius:18px;background:#1e0a38;color:var(--text);box-shadow:0 40px 100px -30px rgba(0,0,0,.65)}
+:root[data-theme="pink"] .viewer{background:#fff5fa}
+.viewer::backdrop{background:rgba(8,2,20,.6);backdrop-filter:blur(6px)}
+.viewer[open]{animation:pop .35s cubic-bezier(.2,.9,.3,1.2)}
+.viewer[open]::backdrop{animation:fade .3s ease}
+@keyframes pop{from{opacity:0;transform:translateY(16px) scale(.96)}}
+.viewer-bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.8rem 1rem .8rem 1.3rem;border-bottom:1px solid var(--line)}
+.viewer-bar h3{margin:0;font-size:1.05rem}
+.viewer-actions{display:flex;align-items:center;gap:.6rem;flex:none}
+.pdf-dl{padding:.4rem .9rem;border:1.5px solid var(--line2);border-radius:999px;color:var(--accent);font-size:.9rem;font-weight:600;text-decoration:none;transition:border-color .25s ease}
+.pdf-dl:hover{border-color:var(--accent)}
+.viewer .x{display:grid;place-items:center;width:2.2rem;height:2.2rem;border:1.5px solid var(--line2);border-radius:50%;background:transparent;color:var(--text);font:400 1.5rem/1 var(--body);cursor:pointer;transition:background .25s ease,color .25s ease}
+.viewer .x:hover{background:var(--accent);color:var(--ink)}
+.viewer .x:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.viewer-body{max-height:calc(92vh - 4rem);padding:1rem;overflow:auto}
+.viewer-body img{display:block;width:100%;height:auto;border-radius:10px;background:#fff;box-shadow:0 12px 40px -18px rgba(0,0,0,.5)}
+@media (max-width:560px){.viewer-bar h3{font-size:.95rem}.pdf-dl{padding:.35rem .7rem;font-size:.85rem}}
