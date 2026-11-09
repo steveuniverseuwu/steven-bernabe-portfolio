@@ -152,13 +152,10 @@
     })();
   }
 
-  // ---- Purple mode / pink mode ----
+  // ---- Purple mode / pink mode (Instant, non-blocking) ----
   const modeBtn = document.getElementById('mode');
   const modeLbl = modeBtn.querySelector('.lbl');
   const themeMeta = document.querySelector('meta[name="theme-color"]');
-  const shift = document.getElementById('shift');
-  const shiftWord = document.getElementById('shiftWord');
-  let busy = false;
 
   // Tab icon: an "SB" badge that changes colour with the mode
   const fav = document.getElementById('fav');
@@ -175,41 +172,17 @@
     const next = t === 'pink' ? 'purple' : 'pink';
     modeLbl.textContent = next.charAt(0).toUpperCase() + next.slice(1) + ' mode';
     modeBtn.setAttribute('aria-label', 'Switch to ' + next + ' mode');
-    themeMeta.setAttribute('content', t === 'pink' ? '#ffe9f3' : '#1a0638');
+    themeMeta.setAttribute('content', t === 'pink' ? '#fff0f6' : '#1a0638');
     if (fav) fav.setAttribute('href', icons[t]);
-  }
-
-  function typeOnce(el, text, speed, done) {
-    let k = 0;
-    (function step() {
-      el.textContent = text.slice(0, ++k);
-      if (k < text.length) setTimeout(step, speed); else done();
-    })();
   }
 
   applyTheme(root.dataset.theme === 'pink' ? 'pink' : 'violet');
 
   modeBtn.addEventListener('click', () => {
-    if (busy) return;
-    busy = true;
-    const from = root.dataset.theme === 'pink' ? 'pink' : 'violet';
-    const to = from === 'pink' ? 'violet' : 'pink';
-    if (reduce) { applyTheme(to); busy = false; return; }
-    shift.className = 'shift f-' + from;
-    shiftWord.textContent = '';
-    void shift.offsetWidth;
-    shift.classList.add('on');
-    typeOnce(shiftWord, 'CHANGE UP!', 70, () => {
-      setTimeout(() => {
-        shift.classList.add('grow');
-        setTimeout(() => {
-          applyTheme(to);
-          shift.classList.remove('on');
-          setTimeout(() => { shift.className = 'shift'; busy = false; }, 400);
-        }, 1100);
-      }, 250);
-    });
+    const to = root.dataset.theme === 'pink' ? 'violet' : 'pink';
+    applyTheme(to);
   });
+
   // ---- Certificate viewer: opens in a box over the page ----
   const viewer = document.getElementById('viewer');
   if (viewer && typeof viewer.showModal === 'function') {
@@ -232,6 +205,44 @@
     viewer.addEventListener('click', (e) => { if (e.target === viewer) viewer.close(); });
     document.getElementById('viewerClose').addEventListener('click', () => viewer.close());
     viewer.addEventListener('close', () => root.classList.remove('lock'));
+  }
+
+  // ---- QA Deliverables Artifact Viewer ----
+  const qaViewer = document.getElementById('qaViewer');
+  if (qaViewer && typeof qaViewer.showModal === 'function') {
+    const qaTabs = document.querySelectorAll('.qa-tab');
+    const qaPanes = document.querySelectorAll('.qa-pane');
+    const qaClose = document.getElementById('qaViewerClose');
+
+    function switchQaTab(targetId) {
+      qaTabs.forEach((tab) => {
+        const isMatch = tab.dataset.target === targetId;
+        tab.classList.toggle('active', isMatch);
+        tab.setAttribute('aria-selected', isMatch ? 'true' : 'false');
+      });
+      qaPanes.forEach((pane) => {
+        pane.classList.toggle('active', pane.id === targetId);
+      });
+    }
+
+    qaTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        switchQaTab(tab.dataset.target);
+      });
+    });
+
+    document.querySelectorAll('[data-qa-target]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.qaTarget;
+        switchQaTab(target);
+        qaViewer.showModal();
+        root.classList.add('lock');
+      });
+    });
+
+    qaViewer.addEventListener('click', (e) => { if (e.target === qaViewer) qaViewer.close(); });
+    if (qaClose) qaClose.addEventListener('click', () => qaViewer.close());
+    qaViewer.addEventListener('close', () => root.classList.remove('lock'));
   }
   // ---- Certificate badge: if the image file is ever missing, show the award icon instead of a broken picture ----
   document.querySelectorAll('.cert-ico img').forEach((img) => {
