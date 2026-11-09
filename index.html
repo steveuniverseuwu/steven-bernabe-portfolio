@@ -17,7 +17,7 @@
 <meta name="twitter:image" content="assets/images/chainguard-home.webp">
 <link rel="icon" id="fav" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Cdefs%3E%3ClinearGradient%20id='g'%20x1='0'%20y1='0'%20x2='1'%20y2='1'%3E%3Cstop%20offset='0'%20stop-color='%239b3bea'/%3E%3Cstop%20offset='1'%20stop-color='%23ff4fd0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width='64'%20height='64'%20rx='16'%20fill='url(%23g)'/%3E%3Ctext%20x='32'%20y='44'%20font-family='Arial,Helvetica,sans-serif'%20font-weight='700'%20font-size='32'%20text-anchor='middle'%20fill='%23fff'%3ESB%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="style.css?v=15">
+<link rel="stylesheet" href="style.css?v=16">
 </head>
 <body>
 <div class="deco" aria-hidden="true"><div class="clouds"><svg class="cl" viewBox="-30 -30 260 160" style="left:-10vw;bottom:-9vh;--w:52vw;--s:52s"><use href="#cloudg" fill="url(#cw)"/></svg><svg class="cl" viewBox="-30 -30 260 160" style="left:22vw;bottom:-13vh;--w:58vw;--s:64s"><use href="#cloudg" fill="url(#cw)"/></svg><svg class="cl" viewBox="-30 -30 260 160" style="left:56vw;bottom:-10vh;--w:54vw;--s:58s"><use href="#cloudg" fill="url(#cw)"/></svg><svg class="cl" viewBox="-30 -30 260 160" style="right:-12vw;bottom:-3vh;--w:44vw;--s:70s"><use href="#cloudg" fill="url(#cp)"/></svg><svg class="cl" viewBox="-30 -30 260 160" style="left:6vw;top:24vh;--w:24vw;--s:46s"><use href="#cloudg" fill="url(#cp)"/></svg><svg class="cl" viewBox="-30 -30 260 160" style="right:4vw;top:44vh;--w:21vw;--s:56s"><use href="#cloudg" fill="url(#cw)"/></svg><svg class="cl" viewBox="-30 -30 260 160" style="left:-9vw;top:-11vh;--w:42vw;--s:60s"><use href="#cloudg" fill="url(#cv)"/></svg><svg class="cl" viewBox="-30 -30 260 160" style="right:-7vw;top:-9vh;--w:38vw;--s:66s"><use href="#cloudg" fill="url(#cp)"/></svg><i class="sp" style="left:12%;top:22%;--z:14px;--n:0"></i><i class="sp" style="left:26%;top:12%;--z:9px;--n:1"></i><i class="sp" style="left:44%;top:30%;--z:11px;--n:2"></i><i class="sp" style="left:63%;top:16%;--z:16px;--n:3"></i><i class="sp" style="left:80%;top:28%;--z:10px;--n:4"></i><i class="sp" style="left:90%;top:10%;--z:13px;--n:5"></i><i class="sp" style="left:8%;top:58%;--z:10px;--n:6"></i><i class="sp" style="left:35%;top:66%;--z:8px;--n:7"></i><i class="sp" style="left:72%;top:60%;--z:12px;--n:8"></i><i class="sp" style="left:93%;top:52%;--z:9px;--n:9"></i></div>
@@ -136,33 +136,50 @@
 
 <section class="row" id="skills">
 <h2>Skills</h2>
-<div>
-<p class="group">Quality assurance</p>
-<ul class="chips">
-<li>Manual & exploratory testing</li>
-<li>Automated testing (Pest PHP / PHPUnit)</li>
-<li>Performance & load testing (k6 & LoadFocus)</li>
-<li>Test case & scenario design</li>
-<li>Test planning & QAPMF (Trello)</li>
-<li>Defect reporting & bug lifecycle</li>
-<li>Retesting & regression verification</li>
-<li>API testing with Postman</li>
-<li>Database data integrity (SQL)</li>
-<li>Blockchain & IPFS reconciliation testing</li>
-<li>Real-time tamper heartbeat verification</li>
-<li>Requirements review & boundary testing</li>
-</ul>
-<p class="group">Currently exploring & expanding into</p>
-<ul class="chips">
-<li><span class="tag badge-next">Learning</span> End-to-end automation (Playwright)</li>
-<li><span class="tag badge-next">Learning</span> Automated API test pipelines (Newman & Postman)</li>
-<li><span class="tag badge-next">Learning</span> CI/CD test automation (GitHub Actions)</li>
-</ul>
-<p class="group">Data and design</p>
-<ul class="chips"><li>Data analytics</li><li>Graphic design</li><li>UI/UX design</li></ul>
-<p class="group">Web development (working knowledge)</p>
-<ul class="chips"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>PHP</li><li>Laravel</li><li>MySQL</li><li>PostgreSQL</li></ul>
-<p class="muted">I build these web skills through coursework, research, and AI-assisted learning. I use AI as a helper, not a replacement for understanding the work.</p>
+<div class="skills-grid">
+  <div class="skill-card">
+    <p class="group">Quality assurance & automation</p>
+    <ul class="chips">
+      <li>Manual & exploratory testing</li>
+      <li>Automated testing (Pest PHP / PHPUnit)</li>
+      <li>Performance & load testing (k6 & LoadFocus)</li>
+      <li>Test case & scenario design</li>
+      <li>Test planning & QAPMF (Trello)</li>
+      <li>Defect reporting & bug lifecycle</li>
+      <li>Retesting & regression verification</li>
+      <li>API testing with Postman</li>
+      <li>Database data integrity (SQL)</li>
+      <li>Blockchain & IPFS reconciliation testing</li>
+      <li>Real-time tamper heartbeat verification</li>
+      <li>Requirements review & boundary testing</li>
+    </ul>
+    <p class="group" style="margin-top:1.2rem">Currently exploring & expanding into</p>
+    <ul class="chips">
+      <li><span class="tag badge-next">Learning</span> End-to-end automation (Playwright)</li>
+      <li><span class="tag badge-next">Learning</span> Automated API test pipelines (Newman & Postman)</li>
+      <li><span class="tag badge-next">Learning</span> CI/CD test automation (GitHub Actions)</li>
+    </ul>
+  </div>
+
+  <div class="skill-card">
+    <p class="group">Web development (working knowledge)</p>
+    <ul class="chips">
+      <li>Laravel</li>
+      <li>PHP</li>
+      <li>MySQL</li>
+      <li>PostgreSQL</li>
+      <li>JavaScript</li>
+      <li>HTML</li>
+      <li>CSS</li>
+    </ul>
+    <p class="group" style="margin-top:1.2rem">Data & design</p>
+    <ul class="chips">
+      <li>Data analytics</li>
+      <li>UI/UX design</li>
+      <li>Graphic design</li>
+    </ul>
+    <p class="muted" style="margin-top:auto;padding-top:1.4rem">I build these development and technical skills through coursework, research, and AI-assisted learning as a tool for hands-on understanding and test automation.</p>
+  </div>
 </div>
 </section>
 
@@ -194,6 +211,7 @@
 
 <section class="row last contact" id="contact">
 <h2>Contact</h2>
+<div class="contact-grid">
 <div>
 <h3>Open to QA internship opportunities</h3>
 <p>The best way to reach me is by email. You can also download my resume and CV below in PDF or Word formats.</p>
@@ -201,6 +219,7 @@
 <a class="btn main" href="assets/docs/Bernabe_Steven_Resume_QA.pdf" download>Download resume (PDF)</a>
 <a class="btn" href="assets/docs/Bernabe_Steven_CV_QA.pdf" download>Download CV (PDF)</a>
 <a class="btn" href="assets/docs/Bernabe_Steven_Resume_QA.docx" download>Word format (.docx)</a>
+</div>
 </div>
 <div class="links">
 <a class="link" href="mailto:stevenbenedicttbernabe@gmail.com"><span class="ico" aria-hidden="true"><svg class="s" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7.5 8.5 6 8.5-6"/></svg></span>stevenbenedicttbernabe@gmail.com</a>
