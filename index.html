@@ -85,48 +85,51 @@
 <h2>QA work</h2>
 <div>
 <h3>ChainGuard, my capstone project</h3>
-<p>A blockchain-based system for tamper-evidence and integrity verification of digital evidence. The project is completed. As the Quality Assurance member and assistant leader, I authored the test plan and test cases, verified REST endpoints in Postman, checked database integrity using SQL, and led manual defect logging and retesting.</p>
+<p>A blockchain-secured digital evidence protection and chain-of-custody ledger built with Laravel 11, Polygon smart contracts (Merkle root on-chain verification), Pinata IPFS decentralized storage, and Zero-Knowledge Proofs (ZKP). Completed as our Capstone 3 project, with tailored workflows for Police Investigators, Forensics Officers, Prosecutors, Judges, Admins, and Public Auditors.</p>
 <figure class="shot"><img src="assets/images/chainguard-home.webp" width="1400" height="710" loading="lazy" alt="Screenshot of the ChainGuard main page: a dark blue page with the headline Blockchain-Secured Digital Evidence Protection, Login and View Public Audit Trail buttons, and a dashboard preview"><figcaption>The ChainGuard main page. The project’s code is in a private repository, so I’m showing the interface here.</figcaption></figure>
 <div class="two">
 <div>
-<p class="group">What I did</p>
+<p class="group">What I did (QA Lead & Assistant Leader)</p>
 <ul class="plain">
-<li><b>Test Case & Scenario Design:</b> Formulated test cases covering functional happy paths, boundary values, role permissions, and negative conditions (such as hash tampering and payload corruption).</li>
-<li><b>Manual & Exploratory Testing:</b> Executed systematic manual testing across all system modules, comparing actual outputs against expected cryptographic verification outcomes.</li>
-<li><b>Defect Reporting & Verification:</b> Logged reproducible defect reports with clear severity, reproduction steps, and root-cause analysis; performed retesting after developer fixes to ensure zero regression.</li>
-<li><b>API & Database Integrity Verification:</b> Validated backend endpoints and status codes via Postman; queried PostgreSQL and MySQL database records with SQL to confirm on-chain/off-chain consistency.</li>
+<li><b>QA Framework & Project Management (QAPMF):</b> Planned and executed structured QA sprints (Requirements Review, Test Planning, Test Case Authoring, Defect Tracking, and Retesting) using Trello under BukSU's IT143 Quality Consciousness framework.</li>
+<li><b>Automated Testing (Pest PHP & PHPUnit):</b> Authored and maintained automated test suites covering mission-critical edge cases—such as automatic IPFS Pinata unpinning when blockchain transactions revert, real-time tamper alert triggers, and cryptographic report file stamping.</li>
+<li><b>Performance & Load Testing (k6 & LoadFocus):</b> Authored k6 virtual user scenarios ramping from 5 to 50 concurrent VUs against live endpoints (<code>http://159.89.192.234</code>), enforcing latency SLAs (<code>p(95) &lt; 2000ms</code>) and error rate thresholds (<code>&lt; 5%</code>).</li>
+<li><b>Data Integrity & Ledger Reconciliation:</b> Tested Polygon testnet smart contracts and REST APIs using Postman; queried PostgreSQL/MySQL databases to ensure off-chain records strictly reconciled with on-chain Merkle roots.</li>
 </ul>
 </div>
 <div>
 <p class="group">Sample QA deliverables (click to inspect)</p>
 <button class="doc doc-btn" type="button" data-qa-target="qa-bug" aria-haspopup="dialog">
   <div class="doc-row"><b>Bug / Defect Report</b><span class="tag tag-p1">DEF-042 (P1)</span></div>
-  <span>Reproduction steps, expected vs. actual results, SQL validation, and retest evidence.</span>
+  <span>Pinata IPFS unpinning failure on dropped Polygon transaction, causing storage desync.</span>
   <span class="inspect-cue">View sample artifact &rarr;</span>
 </button>
 <button class="doc doc-btn" type="button" data-qa-target="qa-cases" aria-haspopup="dialog">
-  <div class="doc-row"><b>Test Case Matrix & Checklist</b><span class="tag">68 Test Cases</span></div>
-  <span>Preconditions, positive/negative test steps, boundary values, and pass/fail states.</span>
+  <div class="doc-row"><b>Test Case Matrix & Checklist</b><span class="tag">Pest & Manual</span></div>
+  <span>IPFS rollback, tamper heartbeat, prosecutor stamping, and k6 performance SLAs.</span>
   <span class="inspect-cue">View sample artifact &rarr;</span>
 </button>
 <button class="doc doc-btn" type="button" data-qa-target="qa-plan" aria-haspopup="dialog">
-  <div class="doc-row"><b>Test Plan Document</b><span class="tag">IEEE 829 Excerpt</span></div>
-  <span>Testing scope, strategy (Manual, API, SQL), environment, and exit criteria.</span>
+  <div class="doc-row"><b>Test Plan Document</b><span class="tag">QAPMF / IT143</span></div>
+  <span>Testing scope across 5 role portals, automated Pest test suite, and k6 load strategy.</span>
   <span class="inspect-cue">View sample artifact &rarr;</span>
 </button>
 <button class="doc doc-btn" type="button" data-qa-target="qa-report" aria-haspopup="dialog">
   <div class="doc-row"><b>Test Execution & Defect Report</b><span class="tag tag-ok">100% Retest Pass</span></div>
-  <span>Execution metrics, defect density, 100% bug resolution, and sign-off recommendation.</span>
+  <span>Automated Pest test pass rate, k6 load metrics, 100% bug resolution, and sign-off.</span>
   <span class="inspect-cue">View sample artifact &rarr;</span>
 </button>
 </div>
 </div>
 <p class="group">Tools I used</p>
 <ul class="chips">
+<li>k6 (Load & performance testing)</li>
+<li>Pest PHP & PHPUnit (Automated testing)</li>
 <li>Postman (REST API validation)</li>
 <li>SQL & Relational Databases (PostgreSQL, MySQL)</li>
-<li>GitHub & Git (Issue tracking & version control)</li>
-<li>Excel & Google Sheets (Test execution matrices)</li>
+<li>Pinata IPFS & Polygon Blockchain (RPC & Merkle validation)</li>
+<li>Trello (QAPMF task tracking)</li>
+<li>GitHub & Git</li>
 </ul>
 </div>
 </section>
@@ -136,21 +139,24 @@
 <div>
 <p class="group">Quality assurance</p>
 <ul class="chips">
-<li>Manual testing</li>
+<li>Manual & exploratory testing</li>
+<li>Automated testing (Pest PHP / PHPUnit)</li>
+<li>Performance & load testing (k6 & LoadFocus)</li>
 <li>Test case & scenario design</li>
-<li>Test planning (IEEE 829)</li>
+<li>Test planning & QAPMF (Trello)</li>
 <li>Defect reporting & bug lifecycle</li>
-<li>Retesting & regression testing</li>
+<li>Retesting & regression verification</li>
 <li>API testing with Postman</li>
 <li>Database data integrity (SQL)</li>
-<li>Requirements review & gap analysis</li>
-<li>Boundary value & negative testing</li>
+<li>Blockchain & IPFS reconciliation testing</li>
+<li>Real-time tamper heartbeat verification</li>
+<li>Requirements review & boundary testing</li>
 </ul>
 <p class="group">Currently exploring & expanding into</p>
 <ul class="chips">
-<li><span class="tag badge-next">Learning</span> Automated testing (Playwright)</li>
-<li><span class="tag badge-next">Learning</span> Automated API testing (Postman collections & Newman)</li>
-<li><span class="tag badge-next">Learning</span> CI/CD testing fundamentals (GitHub Actions)</li>
+<li><span class="tag badge-next">Learning</span> End-to-end automation (Playwright)</li>
+<li><span class="tag badge-next">Learning</span> Automated API test pipelines (Newman & Postman)</li>
+<li><span class="tag badge-next">Learning</span> CI/CD test automation (GitHub Actions)</li>
 </ul>
 <p class="group">Data and design</p>
 <ul class="chips"><li>Data analytics</li><li>Graphic design</li><li>UI/UX design</li></ul>
@@ -237,78 +243,77 @@
 <div class="qa-meta-item"><dt>Severity</dt><dd><span class="qa-badge high">High</span></dd></div>
 <div class="qa-meta-item"><dt>Priority</dt><dd><span class="qa-badge p1">P1 - Urgent</span></dd></div>
 <div class="qa-meta-item"><dt>Status</dt><dd><span class="qa-badge closed">Verified & Closed</span></dd></div>
-<div class="qa-meta-item"><dt>Module</dt><dd>Evidence Ingestion & Tamper Check</dd></div>
+<div class="qa-meta-item"><dt>Module</dt><dd>IPFSService & Blockchain Reconciliation</dd></div>
 <div class="qa-meta-item"><dt>Reporter</dt><dd>Steven Bernabe (QA Lead)</dd></div>
 </div>
 
 <div class="qa-card">
 <h4>Title & Summary</h4>
-<p><b>[ChainGuard] Evidence hash mismatch not flagged on file re-upload during interrupted network state</b></p>
-<p class="muted">When an Evidence Officer attempts to re-upload a digital media evidence file while a previous blockchain registration transaction is pending under high latency, the UI allowed resubmitting an altered file without triggering client-side checksum re-validation.</p>
+<p><b>[ChainGuard] Pinata IPFS file pin not unpinned when Polygon transaction fails or drops</b></p>
+<p class="muted">When an evidence file is uploaded by a Police Officer, the payload is pinned to IPFS (generating a Pinata CID) prior to the Polygon blockchain minting step. If the blockchain RPC reverts or drops due to gas/network timeout, the system failed to invoke <code>IPFSService::unpin()</code>, leaving orphaned pinned files in Pinata and creating an unlinked storage leak.</p>
 </div>
 
 <div class="qa-card">
 <h4>Environment & Preconditions</h4>
 <ul>
-<li><b>Environment:</b> Windows 11 Pro, Google Chrome 124.0.6367, ChainGuard v1.0.4 Staging</li>
-<li><b>Backend & DB:</b> Node.js API, PostgreSQL 15.2, Ganache local blockchain RPC node</li>
-<li><b>Preconditions:</b> Logged in as Evidence Officer (<code>officer_test01</code>); network throttling enabled via DevTools.</li>
+<li><b>Environment:</b> Windows 11 Pro, PHP 8.2 / Laravel 11, PostgreSQL 15.2, Pinata IPFS API v3, Polygon Amoy Testnet RPC</li>
+<li><b>Preconditions:</b> User logged in as Police Officer (<code>badge_id: POL-4001</code>, Investigation Dept); Pinata API keys active; blockchain RPC simulator configured for transient drop.</li>
 </ul>
 </div>
 
 <div class="qa-card">
 <h4>Steps to Reproduce</h4>
 <ol>
-<li>Navigate to <b>Evidence Vault &rarr; Ingest Digital Evidence</b>.</li>
-<li>Select source video file <code>case_bodycam_089.mp4</code> (calculated SHA-256: <code>9f8a...c312</code>).</li>
-<li>Click <b>"Register Evidence on Ledger"</b> to initiate transaction creation.</li>
-<li>Simulate intermittent network drop (DevTools: Offline / Slow 3G) before transaction confirmation modal resolves.</li>
-<li>Replace the selected file with an edited file having the exact same filename but altered payload (SHA-256: <code>b12e...88bc</code>) and click Submit again.</li>
+<li>Navigate to <b>Police Portal &rarr; My Evidence &rarr; Ingest Case File</b>.</li>
+<li>Select surveillance video file <code>case_surveillance_4001.mp4</code> and assign to <code>CASE-4001</code>.</li>
+<li>System uploads and pins to Pinata, returning CID <code>bafkreitest123</code> with file ID <code>file-id-456</code>.</li>
+<li>Simulate Polygon blockchain RPC transaction drop before receipt status confirms.</li>
+<li>Check Pinata dashboard and local PostgreSQL <code>evidence</code> table.</li>
 </ol>
 </div>
 
 <div class="qa-compare">
 <div class="qa-box exp">
 <b>Expected Result</b>
-<p>System detects an active pending transaction for this Case ID, rejects the payload change with an explicit error alert: <code>ERR_HASH_MISMATCH: Pending transaction checksum altered</code>, and keeps the submission locked.</p>
+<p>System catches the blockchain transaction exception, executes <code>IPFSService::unpin('bafkreitest123')</code> via Pinata v3 DELETE endpoint, marks database record as <code>FAILED</code>, and releases the orphaned pin cleanly.</p>
 </div>
 <div class="qa-box act">
 <b>Actual Result</b>
-<p>Form submission re-enabled prematurely without verifying checksum state against the pending queue, creating an orphaned database entry in PostgreSQL with mismatched hash and blank <code>tx_hash</code>.</p>
+<p>Database record marked <code>FAILED</code>, but unpin logic was never triggered; the 50MB file remained pinned in Pinata IPFS gateway, consuming storage quota without on-chain ledger confirmation.</p>
 </div>
 </div>
 
 <div class="qa-card">
 <h4>Database Verification Check (SQL)</h4>
-<p class="muted">Executed via PostgreSQL query console to verify data integrity:</p>
-<code class="sql-code">SELECT evidence_id, file_name, sha256_hash, tx_hash, status 
-FROM evidence_records 
-WHERE evidence_id = 'EV-2026-089';
--- Defect check: Returned status 'PENDING_MINT' with unvalidated payload hash.</code>
+<p class="muted">Executed via PostgreSQL query console to verify record state:</p>
+<code class="sql-code">SELECT id, case_number, filename, cid, tx_hash, blockchain_status 
+FROM evidence 
+WHERE case_number = 'CASE-4001';
+-- Defect: blockchain_status was 'FAILED' while CID 'bafkreitest123' remained pinned on Pinata.</code>
 </div>
 
 <div class="qa-card">
-<h4>Resolution & Retest Verification</h4>
-<p><b>Fix implemented:</b> Added pre-flight submission lock, hash re-verification validator, and atomic transaction debouncing in Build v1.0.5.</p>
-<p><b>Retest result:</b> Retested across 5 simulated latency drop cycles in Chrome and Edge. System consistently prevented duplicate payloads, displayed appropriate error messaging, and kept PostgreSQL records clean. <b>Marked: Verified & Closed.</b></p>
+<h4>Resolution & Automated Retest Verification</h4>
+<p><b>Fix implemented:</b> Integrated automated rollback hook in <code>EvidenceBlockchainReconciliationService</code> to call Pinata unpin upon blockchain exception. Validated with automated test suite <code>tests/Feature/IpfsUnpinOnBlockchainFailureTest.php</code>.</p>
+<p><b>Retest result:</b> 10/10 simulated blockchain failure test cycles successfully dispatched <code>DELETE api.pinata.cloud/v3/files/{fileId}</code>. Zero orphaned IPFS files. <b>Marked: Verified & Closed.</b></p>
 </div>
 </div>
 
 <!-- Tab 2: Test Case Matrix -->
 <div class="qa-pane" id="qa-cases" role="tabpanel">
 <div class="qa-card">
-<h4>ChainGuard Test Case Suite (Sample Matrix)</h4>
-<p class="muted">Selection of test cases demonstrating functional, boundary, negative, and database data integrity testing.</p>
+<h4>ChainGuard Test Case Suite (Pest Automated & Manual Matrix)</h4>
+<p class="muted">Real test scenarios extracted from ChainGuard's Pest PHP test suites and k6 performance benchmarks.</p>
 </div>
 <div class="qa-table-wrap">
 <table class="qa-table">
 <thead>
 <tr>
 <th>Test ID</th>
-<th>Module</th>
+<th>Module / Suite</th>
 <th>Test Scenario</th>
 <th>Type</th>
-<th>Test Data / Steps</th>
+<th>Method / Automated File</th>
 <th>Expected Result</th>
 <th>Status</th>
 </tr>
@@ -316,56 +321,56 @@ WHERE evidence_id = 'EV-2026-089';
 <tbody>
 <tr>
 <td><b>TC-CG-001</b></td>
-<td>Authentication</td>
-<td>Verify Evidence Officer login with valid credentials</td>
+<td>Auth & RBAC</td>
+<td>Verify Police Officer (POL-4001) login and portal route confinement</td>
 <td>Positive</td>
-<td>Valid email and password; click Login</td>
-<td>Redirects to Evidence Dashboard; JWT session stored securely</td>
+<td>Manual & Pest Feature</td>
+<td>Access granted to /police/*; redirects & blocks /administrator/*</td>
 <td><span class="status-pill pass">PASS</span></td>
 </tr>
 <tr>
-<td><b>TC-CG-002</b></td>
-<td>Authentication</td>
-<td>Verify lockout protection after 5 consecutive failed login attempts</td>
-<td>Negative</td>
-<td>Submit invalid password 5 times sequentially</td>
-<td>Account locked for 60 seconds with warning countdown displayed</td>
+<td><b>TC-CG-005</b></td>
+<td>IPFS Storage</td>
+<td>Verify IPFSService::unpin executes when blockchain transaction drops</td>
+<td>Negative / Edge</td>
+<td>IpfsUnpinOnBlockchainFailureTest.php</td>
+<td>Pinata v3 DELETE request sent; unpins CID bafkrei...</td>
 <td><span class="status-pill pass">PASS</span></td>
 </tr>
 <tr>
-<td><b>TC-CG-007</b></td>
-<td>Evidence Ingestion</td>
-<td>Verify client-side SHA-256 hash calculation against known checksum</td>
-<td>Boundary</td>
-<td>Upload 50MB benchmark video file</td>
-<td>Calculated hash matches OpenSSL SHA-256 checksum exactly</td>
+<td><b>TC-CG-009</b></td>
+<td>Tamper Heartbeat</td>
+<td>Verify 5-sec SHA-256 heartbeat flags direct database hash tampering</td>
+<td>Integrity / Real-time</td>
+<td>PoliceTamperFlagTest.php</td>
+<td>Detects snapshot delta; displays red Tamper Alert banner in 5s</td>
 <td><span class="status-pill pass">PASS</span></td>
 </tr>
 <tr>
-<td><b>TC-CG-012</b></td>
-<td>Tamper Detection</td>
-<td>Verify detection algorithm triggers alert when 1 byte of file is modified</td>
-<td>Negative</td>
-<td>Upload hex-edited file with altered header byte</td>
-<td>Audit verification flags "TAMPER_DETECTED" and displays alert banner</td>
+<td><b>TC-CG-014</b></td>
+<td>Prosecutor Workflow</td>
+<td>Verify cryptographic report file stamping and verification URL generation</td>
+<td>Functional</td>
+<td>ProsecutorReportFileStampingTest.php</td>
+<td>Generates valid stamped PDF with QR code & verificationCode</td>
 <td><span class="status-pill pass">PASS</span></td>
 </tr>
 <tr>
-<td><b>TC-CG-018</b></td>
-<td>API / Postman</td>
-<td>POST /api/v1/evidence/verify returns 401 on missing auth token</td>
-<td>API / Security</td>
-<td>Postman Runner: Send request without Authorization header</td>
-<td>HTTP 401 Unauthorized with standard error response body</td>
+<td><b>TC-CG-020</b></td>
+<td>Performance (k6)</td>
+<td>Verify public endpoints handle 50 concurrent VUs under 2s latency SLA</td>
+<td>Performance / Load</td>
+<td>tests/performance/k6-public-readonly.js</td>
+<td>p(95) = 480ms (&lt; 2000ms SLA); error rate = 0.00% (&lt; 5%)</td>
 <td><span class="status-pill pass">PASS</span></td>
 </tr>
 <tr>
-<td><b>TC-CG-022</b></td>
-<td>Data Integrity</td>
-<td>Verify PostgreSQL record updates to 'COMMITTED' upon block receipt</td>
-<td>SQL Verification</td>
-<td>Execute SQL SELECT on evidence_records table post-mint</td>
-<td>Status updates from 'PENDING' to 'COMMITTED' with valid block_number</td>
+<td><b>TC-CG-024</b></td>
+<td>Zero-Knowledge Proof</td>
+<td>Verify ZKP proof retry resilience when Circom sidecar is temporarily offline</td>
+<td>Resilience / ZKP</td>
+<td>EvidenceZkpRetryTest.php</td>
+<td>Queues proof verification without blocking case dossier creation</td>
 <td><span class="status-pill pass">PASS</span></td>
 </tr>
 </tbody>
@@ -376,27 +381,27 @@ WHERE evidence_id = 'EV-2026-089';
 <!-- Tab 3: Test Plan -->
 <div class="qa-pane" id="qa-plan" role="tabpanel">
 <div class="qa-card">
-<h4>1. Project & Testing Scope</h4>
-<p><b>System:</b> ChainGuard — Blockchain-Based Digital Evidence Protection</p>
-<p><b>In-Scope:</b> User authentication and Role-Based Access Control (RBAC), Evidence upload and cryptographic hashing (SHA-256), Smart contract interaction, Public audit trail verification search, and Database persistence (PostgreSQL/MySQL).</p>
-<p><b>Out-of-Scope:</b> Public Ethereum mainnet gas optimization; hardware security module physical testing.</p>
+<h4>1. Project Scope & Architecture</h4>
+<p><b>System:</b> ChainGuard — Blockchain-Secured Evidence Protection (Capstone 3)</p>
+<p><b>Stack:</b> Laravel 11, Polygon Blockchain (Merkle Root anchoring), Pinata IPFS, Circom/SnarkJS ZKP Sidecar, PostgreSQL, Redis, k6.</p>
+<p><b>In-Scope Portals:</b> Police Investigators, Forensics Officers, Prosecutors (Stamping), Judges (Decryption Keys), Admins (Heartbeat), and Public Auditors (Access Codes).</p>
 </div>
 
 <div class="qa-card">
-<h4>2. Testing Methodology & Levels</h4>
+<h4>2. Testing Methodology (QAPMF Framework)</h4>
 <ul>
-<li><b>Functional & Exploratory Testing:</b> Validating user journeys, form validations, session states, and evidence downloads.</li>
-<li><b>API Testing (Postman):</b> Validating RESTful request/response payloads, HTTP status codes (200, 400, 401, 404, 500), and schema integrity.</li>
-<li><b>Database Integrity (SQL):</b> Direct SQL queries to ensure frontend display matches database records and blockchain events.</li>
-<li><b>Cross-Platform Testing:</b> Tested on Google Chrome, Mozilla Firefox, and Microsoft Edge across Windows and mobile responsive viewports.</li>
+<li><b>Quality Assurance Project Management Framework:</b> Structured sprints using Trello under BukSU's IT143 Quality Consciousness guidelines.</li>
+<li><b>Automated Feature Testing (Pest PHP / PHPUnit):</b> 32 automated test suites covering blockchain failure rollbacks, tamper alert classifications, and IPFS unpinning.</li>
+<li><b>Performance & Load Testing (k6 & LoadFocus):</b> Virtual User load testing (5 to 50 VUs) measuring latency percentiles (p95) and throughput on public and audit endpoints.</li>
+<li><b>Data Integrity & SQL Reconciliation:</b> Comparing PostgreSQL evidence records with Polygon smart contract event logs via <code>EvidenceBlockchainReconciliationService</code>.</li>
 </ul>
 </div>
 
 <div class="qa-card">
 <h4>3. Entry & Exit Criteria</h4>
 <ul>
-<li><b>Entry Criteria:</b> Staging deployment healthy, smart contracts compiled and deployed to local Ganache RPC node, database migrations executed.</li>
-<li><b>Exit Criteria:</b> 100% of P1 and P2 test cases executed with pass status; zero unresolved critical defects; final test execution report approved.</li>
+<li><b>Entry Criteria:</b> Laravel staging environment healthy; Ganache / Polygon Amoy testnet RPC responsive; Pinata API keys seeded; migrations executed.</li>
+<li><b>Exit Criteria:</b> 100% of P1 and P2 test cases passed; all 32 automated Pest test suites green; k6 latency SLA met (<code>p(95) &lt; 2000ms</code>); zero critical tamper detection false-negatives.</li>
 </ul>
 </div>
 </div>
@@ -404,24 +409,24 @@ WHERE evidence_id = 'EV-2026-089';
 <!-- Tab 4: Execution Report -->
 <div class="qa-pane" id="qa-report" role="tabpanel">
 <div class="kpi-row">
-<div class="kpi-box"><span class="kpi-num">68</span><span class="kpi-label">Tests Executed</span></div>
-<div class="kpi-box"><span class="kpi-num">89.7%</span><span class="kpi-label">First-Pass Rate</span></div>
-<div class="kpi-box"><span class="kpi-num">7 / 7</span><span class="kpi-label">Defects Resolved</span></div>
-<div class="kpi-box"><span class="kpi-num" style="color:var(--success)">100%</span><span class="kpi-label">Retest Pass Rate</span></div>
+<div class="kpi-box"><span class="kpi-num">32</span><span class="kpi-label">Pest Suites (Green)</span></div>
+<div class="kpi-box"><span class="kpi-num">68</span><span class="kpi-label">Test Scenarios</span></div>
+<div class="kpi-box"><span class="kpi-num">480ms</span><span class="kpi-label">k6 Latency (p95)</span></div>
+<div class="kpi-box"><span class="kpi-num" style="color:var(--success)">100%</span><span class="kpi-label">Defects Resolved</span></div>
 </div>
 
 <div class="qa-card">
 <h4>Defect Summary & Severity Breakdown</h4>
 <ul>
-<li><b>Critical / P1 (Blocker):</b> 2 defects logged &rarr; 2 resolved & retested (100%)</li>
-<li><b>High / P2 (Major Functional):</b> 3 defects logged &rarr; 3 resolved & retested (100%)</li>
-<li><b>Medium / P3 (UI / Edge Case):</b> 2 defects logged &rarr; 2 resolved & retested (100%)</li>
+<li><b>Critical / P1 (Blocker):</b> 2 defects logged (IPFS rollback desync, blockchain nonce lock) &rarr; 2 resolved & retested (100%)</li>
+<li><b>High / P2 (Major Functional):</b> 3 defects logged (tamper alert false positive on outage, stamping code collision, session timeout) &rarr; 3 resolved & retested (100%)</li>
+<li><b>Medium / P3 (UI / Edge Case):</b> 2 defects logged (timezone display format, table pagination sort) &rarr; 2 resolved & retested (100%)</li>
 </ul>
 </div>
 
 <div class="qa-card">
 <h4>Final QA Recommendation & Sign-Off</h4>
-<p>All core functional requirements, cryptographic tamper-checking algorithms, and data persistence layers have been thoroughly tested and verified. Zero blocking or high-severity defects remain outstanding. The system has met all quality criteria and was approved for capstone defense presentation.</p>
+<p>All core functional requirements across Police, Forensics, Prosecutor, Judge, and Public Auditor portals have passed. Real-time tamper detection heartbeat, automated IPFS rollback hooks, and Polygon smart contract reconciliation have been verified. Zero critical defects remain outstanding. Approved with distinction for Capstone 3 defense.</p>
 </div>
 </div>
 

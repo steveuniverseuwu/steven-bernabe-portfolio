@@ -300,3 +300,16 @@ html.lock{overflow:hidden}
   .pdf-dl{padding:.35rem .7rem;font-size:.85rem}
   .doc{padding-left:3rem}
 }
+
+@media print{
+  body{background:#fff!important;color:#000!important}
+  .deco,header.top,.mode,.btns,#qaViewer,#viewer,.shift{display:none!important}
+  .wrap{width:100%!important;margin:0!important;padding:0!important}
+  section.row{padding:1.5rem 0!important;border-bottom:1px solid #ccc!important}
+  .hero{padding:1rem 0!important;grid-template-columns:1fr!important}
+  .photo{display:none!important}
+  a{color:#000!important;text-decoration:underline!important}
+  .chips li{background:#eee!important;color:#000!important;border:1px solid #ccc!important}
+  .doc{border:1px solid #ccc!important;background:#fff!important;color:#000!important}
+  .doc span,.muted{color:#444!important}
+}
