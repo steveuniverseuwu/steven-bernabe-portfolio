@@ -17,7 +17,7 @@
 <meta name="twitter:image" content="assets/images/chainguard-home.webp">
 <link rel="icon" id="fav" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Cdefs%3E%3ClinearGradient%20id='g'%20x1='0'%20y1='0'%20x2='1'%20y2='1'%3E%3Cstop%20offset='0'%20stop-color='%239b3bea'/%3E%3Cstop%20offset='1'%20stop-color='%23ff4fd0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width='64'%20height='64'%20rx='16'%20fill='url(%23g)'/%3E%3Ctext%20x='32'%20y='44'%20font-family='Arial,Helvetica,sans-serif'%20font-weight='700'%20font-size='32'%20text-anchor='middle'%20fill='%23fff'%3ESB%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="style.css?v=16">
+<link rel="stylesheet" href="style.css?v=17">
 </head>
 <body>
 <div class="deco" aria-hidden="true"><div class="clouds"><svg class="cl" viewBox="-30 -30 260 160" style="left:-10vw;bottom:-9vh;--w:52vw;--s:52s"><use href="#cloudg" fill="url(#cw)"/></svg><svg class="cl" viewBox="-30 -30 260 160" style="left:22vw;bottom:-13vh;--w:58vw;--s:64s"><use href="#cloudg" fill="url(#cw)"/></svg><svg class="cl" viewBox="-30 -30 260 160" style="left:56vw;bottom:-10vh;--w:54vw;--s:58s"><use href="#cloudg" fill="url(#cw)"/></svg><svg class="cl" viewBox="-30 -30 260 160" style="right:-12vw;bottom:-3vh;--w:44vw;--s:70s"><use href="#cloudg" fill="url(#cp)"/></svg><svg class="cl" viewBox="-30 -30 260 160" style="left:6vw;top:24vh;--w:24vw;--s:46s"><use href="#cloudg" fill="url(#cp)"/></svg><svg class="cl" viewBox="-30 -30 260 160" style="right:4vw;top:44vh;--w:21vw;--s:56s"><use href="#cloudg" fill="url(#cw)"/></svg><svg class="cl" viewBox="-30 -30 260 160" style="left:-9vw;top:-11vh;--w:42vw;--s:60s"><use href="#cloudg" fill="url(#cv)"/></svg><svg class="cl" viewBox="-30 -30 260 160" style="right:-7vw;top:-9vh;--w:38vw;--s:66s"><use href="#cloudg" fill="url(#cp)"/></svg><i class="sp" style="left:12%;top:22%;--z:14px;--n:0"></i><i class="sp" style="left:26%;top:12%;--z:9px;--n:1"></i><i class="sp" style="left:44%;top:30%;--z:11px;--n:2"></i><i class="sp" style="left:63%;top:16%;--z:16px;--n:3"></i><i class="sp" style="left:80%;top:28%;--z:10px;--n:4"></i><i class="sp" style="left:90%;top:10%;--z:13px;--n:5"></i><i class="sp" style="left:8%;top:58%;--z:10px;--n:6"></i><i class="sp" style="left:35%;top:66%;--z:8px;--n:7"></i><i class="sp" style="left:72%;top:60%;--z:12px;--n:8"></i><i class="sp" style="left:93%;top:52%;--z:9px;--n:9"></i></div>
@@ -85,101 +85,78 @@
 <h2>QA work</h2>
 <div>
 <h3>ChainGuard, my capstone project</h3>
-<p>A blockchain-secured digital evidence protection and chain-of-custody ledger built with Laravel 11, Polygon smart contracts (Merkle root on-chain verification), Pinata IPFS decentralized storage, and Zero-Knowledge Proofs (ZKP). Completed as our Capstone 3 project, with tailored workflows for Police Investigators, Forensics Officers, Prosecutors, Judges, Admins, and Public Auditors.</p>
+<p>A blockchain-based system for tamper-evidence and integrity verification of digital evidence. The project is completed. I was the Quality Assurance member and assistant leader, and I researched and proposed the tools and integrations used to build it.</p>
 <figure class="shot"><img src="assets/images/chainguard-home.webp" width="1400" height="710" loading="lazy" alt="Screenshot of the ChainGuard main page: a dark blue page with the headline Blockchain-Secured Digital Evidence Protection, Login and View Public Audit Trail buttons, and a dashboard preview"><figcaption>The ChainGuard main page. The project’s code is in a private repository, so I’m showing the interface here.</figcaption></figure>
 <div class="two">
 <div>
-<p class="group">What I did (QA Lead & Assistant Leader)</p>
+<p class="group">What I did</p>
 <ul class="plain">
-<li><b>QA Framework & Project Management (QAPMF):</b> Planned and executed structured QA sprints (Requirements Review, Test Planning, Test Case Authoring, Defect Tracking, and Retesting) using Trello under BukSU's IT143 Quality Consciousness framework.</li>
-<li><b>Automated Testing (Pest PHP & PHPUnit):</b> Authored and maintained automated test suites covering mission-critical edge cases—such as automatic IPFS Pinata unpinning when blockchain transactions revert, real-time tamper alert triggers, and cryptographic report file stamping.</li>
-<li><b>Performance & Load Testing (k6 & LoadFocus):</b> Authored k6 virtual user scenarios ramping from 5 to 50 concurrent VUs against live endpoints (<code>http://159.89.192.234</code>), enforcing latency SLAs (<code>p(95) &lt; 2000ms</code>) and error rate thresholds (<code>&lt; 5%</code>).</li>
-<li><b>Data Integrity & Ledger Reconciliation:</b> Tested Polygon testnet smart contracts and REST APIs using Postman; queried PostgreSQL/MySQL databases to ensure off-chain records strictly reconciled with on-chain Merkle roots.</li>
+<li>Reviewed system requirements and functionality to write test scenarios and test cases.</li>
+<li>Tested features manually and compared expected results with actual results.</li>
+<li>Reported defects, then retested after fixes to confirm they were resolved.</li>
+<li>Checked database records to verify data integrity.</li>
 </ul>
 </div>
 <div>
-<p class="group">Sample QA deliverables (click to inspect)</p>
-<button class="doc doc-btn" type="button" data-qa-target="qa-bug" aria-haspopup="dialog">
-  <div class="doc-row"><b>Bug / Defect Report</b><span class="tag tag-p1">DEF-042 (P1)</span></div>
-  <span>Pinata IPFS unpinning failure on dropped Polygon transaction, causing storage desync.</span>
-  <span class="inspect-cue">View sample artifact &rarr;</span>
+<p class="group">Documents I wrote</p>
+<button class="doc doc-btn" type="button" data-qa-target="qa-plan" aria-haspopup="dialog">
+  <b>Test plan</b>
+  <span>What is tested and how testing is organized.</span>
 </button>
 <button class="doc doc-btn" type="button" data-qa-target="qa-cases" aria-haspopup="dialog">
-  <div class="doc-row"><b>Test Case Matrix & Checklist</b><span class="tag">Pest & Manual</span></div>
-  <span>IPFS rollback, tamper heartbeat, prosecutor stamping, and k6 performance SLAs.</span>
-  <span class="inspect-cue">View sample artifact &rarr;</span>
+  <b>Test case document or checklist</b>
+  <span>The checks run on each feature.</span>
 </button>
-<button class="doc doc-btn" type="button" data-qa-target="qa-plan" aria-haspopup="dialog">
-  <div class="doc-row"><b>Test Plan Document</b><span class="tag">QAPMF / IT143</span></div>
-  <span>Testing scope across 5 role portals, automated Pest test suite, and k6 load strategy.</span>
-  <span class="inspect-cue">View sample artifact &rarr;</span>
+<button class="doc doc-btn" type="button" data-qa-target="qa-bug" aria-haspopup="dialog">
+  <b>Bug or defect report</b>
+  <span>The problems found, so the team can fix them.</span>
 </button>
 <button class="doc doc-btn" type="button" data-qa-target="qa-report" aria-haspopup="dialog">
-  <div class="doc-row"><b>Test Execution & Defect Report</b><span class="tag tag-ok">100% Retest Pass</span></div>
-  <span>Automated Pest test pass rate, k6 load metrics, 100% bug resolution, and sign-off.</span>
-  <span class="inspect-cue">View sample artifact &rarr;</span>
+  <b>Test execution report</b>
+  <span>A summary of the test results.</span>
 </button>
 </div>
 </div>
 <p class="group">Tools I used</p>
 <ul class="chips">
-<li>k6 (Load & performance testing)</li>
-<li>Pest PHP & PHPUnit (Automated testing)</li>
-<li>Postman (REST API validation)</li>
-<li>SQL & Relational Databases (PostgreSQL, MySQL)</li>
-<li>Pinata IPFS & Polygon Blockchain (RPC & Merkle validation)</li>
-<li>Trello (QAPMF task tracking)</li>
-<li>GitHub & Git</li>
+<li>Postman</li>
+<li>SQL and database tools</li>
+<li>Excel and Google Sheets</li>
+<li>GitHub and Git</li>
 </ul>
 </div>
 </section>
 
 <section class="row" id="skills">
 <h2>Skills</h2>
-<div class="skills-grid">
-  <div class="skill-card">
-    <p class="group">Quality assurance & automation</p>
-    <ul class="chips">
-      <li>Manual & exploratory testing</li>
-      <li>Automated testing (Pest PHP / PHPUnit)</li>
-      <li>Performance & load testing (k6 & LoadFocus)</li>
-      <li>Test case & scenario design</li>
-      <li>Test planning & QAPMF (Trello)</li>
-      <li>Defect reporting & bug lifecycle</li>
-      <li>Retesting & regression verification</li>
-      <li>API testing with Postman</li>
-      <li>Database data integrity (SQL)</li>
-      <li>Blockchain & IPFS reconciliation testing</li>
-      <li>Real-time tamper heartbeat verification</li>
-      <li>Requirements review & boundary testing</li>
-    </ul>
-    <p class="group" style="margin-top:1.2rem">Currently exploring & expanding into</p>
-    <ul class="chips">
-      <li><span class="tag badge-next">Learning</span> End-to-end automation (Playwright)</li>
-      <li><span class="tag badge-next">Learning</span> Automated API test pipelines (Newman & Postman)</li>
-      <li><span class="tag badge-next">Learning</span> CI/CD test automation (GitHub Actions)</li>
-    </ul>
-  </div>
-
-  <div class="skill-card">
-    <p class="group">Web development (working knowledge)</p>
-    <ul class="chips">
-      <li>Laravel</li>
-      <li>PHP</li>
-      <li>MySQL</li>
-      <li>PostgreSQL</li>
-      <li>JavaScript</li>
-      <li>HTML</li>
-      <li>CSS</li>
-    </ul>
-    <p class="group" style="margin-top:1.2rem">Data & design</p>
-    <ul class="chips">
-      <li>Data analytics</li>
-      <li>UI/UX design</li>
-      <li>Graphic design</li>
-    </ul>
-    <p class="muted" style="margin-top:auto;padding-top:1.4rem">I build these development and technical skills through coursework, research, and AI-assisted learning as a tool for hands-on understanding and test automation.</p>
-  </div>
+<div>
+<p class="group">Quality assurance</p>
+<ul class="chips">
+<li>Manual testing</li>
+<li>Test case and scenario design</li>
+<li>Test planning</li>
+<li>Defect reporting</li>
+<li>Retesting</li>
+<li>Requirements review</li>
+<li>Data integrity checking</li>
+</ul>
+<p class="group">Data and design</p>
+<ul class="chips">
+<li>Data analytics</li>
+<li>Graphic design</li>
+<li>UI/UX design</li>
+</ul>
+<p class="group">Web development (working knowledge)</p>
+<ul class="chips">
+<li>HTML</li>
+<li>CSS</li>
+<li>JavaScript</li>
+<li>PHP</li>
+<li>Laravel</li>
+<li>MySQL</li>
+<li>PostgreSQL</li>
+</ul>
+<p class="muted">I build these web skills through coursework, research, and AI-assisted learning. I use AI as a helper, not a replacement for understanding the work.</p>
 </div>
 </section>
 
@@ -205,7 +182,7 @@
 <li><span class="cert-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="5.5"/><path d="m8.5 13.5-1.5 7 5-2.5 5 2.5-1.5-7"/></svg></span><div class="cert-txt"><b>CCNA: Switching, Routing, and Wireless Essentials</b><span>Cisco Networking Academy, through Bukidnon State University. Completed 23 December 2025.</span><a href="assets/docs/certificate-ccna-switching-routing-wireless.pdf" rel="noopener" data-cert="assets/images/cert-ccna-switching-routing-wireless.webp" data-title="CCNA: Switching, Routing, and Wireless Essentials">View certificate</a></div></li>
 <li><span class="cert-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="5.5"/><path d="m8.5 13.5-1.5 7 5-2.5 5 2.5-1.5-7"/></svg></span><div class="cert-txt"><b>CCNA: Introduction to Networks</b><span>Cisco Networking Academy, through Bukidnon State University. Completed 16 May 2025.</span><a href="assets/docs/certificate-ccna-introduction-to-networks.pdf" rel="noopener" data-cert="assets/images/cert-ccna-introduction-to-networks.webp" data-title="CCNA: Introduction to Networks">View certificate</a></div></li>
 </ul></div>
-<div class="item"><h3>Analytical practice & market structure</h3><p class="muted">Outside coursework, I practice chart analysis and market structure reading (candlestick formations, liquidity zones, and multi-timeframe analysis) on demo market feeds. This practice reinforces disciplined data verification, pattern recognition, patience, and attention to subtle anomalies—traits that directly translate to meticulous software testing.</p></div>
+<div class="item"><h3>Outside of school</h3><p class="muted">Since December 2025 I have been learning to read gold (XAUUSD) charts, including candlestick structure, fair value gaps, and multi-timeframe analysis. I use demo accounts only and I am not a professional trader.</p></div>
 </div>
 </section>
 
@@ -401,26 +378,26 @@ WHERE case_number = 'CASE-4001';
 <div class="qa-pane" id="qa-plan" role="tabpanel">
 <div class="qa-card">
 <h4>1. Project Scope & Architecture</h4>
-<p><b>System:</b> ChainGuard — Blockchain-Secured Evidence Protection (Capstone 3)</p>
-<p><b>Stack:</b> Laravel 11, Polygon Blockchain (Merkle Root anchoring), Pinata IPFS, Circom/SnarkJS ZKP Sidecar, PostgreSQL, Redis, k6.</p>
-<p><b>In-Scope Portals:</b> Police Investigators, Forensics Officers, Prosecutors (Stamping), Judges (Decryption Keys), Admins (Heartbeat), and Public Auditors (Access Codes).</p>
+<p><b>System:</b> ChainGuard — Blockchain-Based Digital Evidence Verification (Capstone Project)</p>
+<p><b>Stack:</b> Laravel, PostgreSQL, Postman, Pinata IPFS, Polygon Smart Contracts.</p>
+<p><b>In-Scope Portals:</b> Police Investigators, Forensics Officers, Prosecutors, Judges, Admins, and Public Auditors.</p>
 </div>
 
 <div class="qa-card">
-<h4>2. Testing Methodology (QAPMF Framework)</h4>
+<h4>2. Testing Methodology</h4>
 <ul>
-<li><b>Quality Assurance Project Management Framework:</b> Structured sprints using Trello under BukSU's IT143 Quality Consciousness guidelines.</li>
-<li><b>Automated Feature Testing (Pest PHP / PHPUnit):</b> 32 automated test suites covering blockchain failure rollbacks, tamper alert classifications, and IPFS unpinning.</li>
-<li><b>Performance & Load Testing (k6 & LoadFocus):</b> Virtual User load testing (5 to 50 VUs) measuring latency percentiles (p95) and throughput on public and audit endpoints.</li>
-<li><b>Data Integrity & SQL Reconciliation:</b> Comparing PostgreSQL evidence records with Polygon smart contract event logs via <code>EvidenceBlockchainReconciliationService</code>.</li>
+<li><b>Test Planning & Tracking:</b> Structured sprints using Trello to plan, organize, and monitor QA testing milestones and defect resolution.</li>
+<li><b>Manual & Exploratory Testing:</b> Systematic manual test scenarios across all system portals, comparing actual outputs against expected results.</li>
+<li><b>API & Database Integrity:</b> Validating REST endpoints via Postman and querying PostgreSQL records with SQL to confirm data integrity.</li>
+<li><b>Defect Reporting & Retesting:</b> Logging defect reports with clear severity and reproduction steps; retesting every fix to ensure zero regressions.</li>
 </ul>
 </div>
 
 <div class="qa-card">
 <h4>3. Entry & Exit Criteria</h4>
 <ul>
-<li><b>Entry Criteria:</b> Laravel staging environment healthy; Ganache / Polygon Amoy testnet RPC responsive; Pinata API keys seeded; migrations executed.</li>
-<li><b>Exit Criteria:</b> 100% of P1 and P2 test cases passed; all 32 automated Pest test suites green; k6 latency SLA met (<code>p(95) &lt; 2000ms</code>); zero critical tamper detection false-negatives.</li>
+<li><b>Entry Criteria:</b> Staging environment deployed; database migrations executed; user role accounts and test datasets seeded.</li>
+<li><b>Exit Criteria:</b> 100% of P1 and P2 test cases executed with pass status; zero unresolved critical defects; final sign-off approved.</li>
 </ul>
 </div>
 </div>
@@ -428,30 +405,31 @@ WHERE case_number = 'CASE-4001';
 <!-- Tab 4: Execution Report -->
 <div class="qa-pane" id="qa-report" role="tabpanel">
 <div class="kpi-row">
-<div class="kpi-box"><span class="kpi-num">32</span><span class="kpi-label">Pest Suites (Green)</span></div>
-<div class="kpi-box"><span class="kpi-num">68</span><span class="kpi-label">Test Scenarios</span></div>
-<div class="kpi-box"><span class="kpi-num">480ms</span><span class="kpi-label">k6 Latency (p95)</span></div>
-<div class="kpi-box"><span class="kpi-num" style="color:var(--success)">100%</span><span class="kpi-label">Defects Resolved</span></div>
+<div class="kpi-box"><span class="kpi-num">68</span><span class="kpi-label">Tests Executed</span></div>
+<div class="kpi-box"><span class="kpi-num">89.7%</span><span class="kpi-label">First-Pass Rate</span></div>
+<div class="kpi-box"><span class="kpi-num">7 / 7</span><span class="kpi-label">Defects Resolved</span></div>
+<div class="kpi-box"><span class="kpi-num" style="color:var(--success)">100%</span><span class="kpi-label">Retest Pass Rate</span></div>
 </div>
 
 <div class="qa-card">
 <h4>Defect Summary & Severity Breakdown</h4>
 <ul>
-<li><b>Critical / P1 (Blocker):</b> 2 defects logged (IPFS rollback desync, blockchain nonce lock) &rarr; 2 resolved & retested (100%)</li>
-<li><b>High / P2 (Major Functional):</b> 3 defects logged (tamper alert false positive on outage, stamping code collision, session timeout) &rarr; 3 resolved & retested (100%)</li>
-<li><b>Medium / P3 (UI / Edge Case):</b> 2 defects logged (timezone display format, table pagination sort) &rarr; 2 resolved & retested (100%)</li>
+<li><b>Critical / P1 (Blocker):</b> 2 defects logged &rarr; 2 resolved & retested (100%)</li>
+<li><b>High / P2 (Major Functional):</b> 3 defects logged &rarr; 3 resolved & retested (100%)</li>
+<li><b>Medium / P3 (UI / Edge Case):</b> 2 defects logged &rarr; 2 resolved & retested (100%)</li>
 </ul>
 </div>
 
 <div class="qa-card">
 <h4>Final QA Recommendation & Sign-Off</h4>
-<p>All core functional requirements across Police, Forensics, Prosecutor, Judge, and Public Auditor portals have passed. Real-time tamper detection heartbeat, automated IPFS rollback hooks, and Polygon smart contract reconciliation have been verified. Zero critical defects remain outstanding. Approved with distinction for Capstone 3 defense.</p>
+<p>All core functional requirements across Police, Forensics, Prosecutor, Judge, and Public Auditor portals have passed. Zero critical defects remain outstanding. The system has met all quality criteria and was approved for capstone defense presentation.</p>
 </div>
+
 </div>
 
 </div>
 </dialog>
 
-<script src="script.js?v=14"></script>
+<script src="script.js?v=17"></script>
 </body>
 </html>
