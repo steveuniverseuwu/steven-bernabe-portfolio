@@ -85,6 +85,18 @@
     });
   });
 
+  // Clicking brand scrolls to top and resets nav highlight
+  const brand = document.querySelector('a.brand');
+  if (brand) {
+    brand.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+      setActive('');
+      lockUntil = performance.now() + 900;
+      setTimeout(update, 950);
+    });
+  }
+
   window.addEventListener('scroll', requestUpdate, { passive: true });
   window.addEventListener('resize', requestUpdate);
   window.addEventListener('load', update);
