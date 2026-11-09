@@ -221,9 +221,9 @@
 </div>
 <div class="viewer-actions">
 <div class="qa-tabs" role="tablist" aria-label="Artifact Tabs">
-<button class="qa-tab active" type="button" role="tab" data-target="qa-bug" aria-selected="true">Bug Report</button>
+<button class="qa-tab active" type="button" role="tab" data-target="qa-plan" aria-selected="true">Test Plan</button>
 <button class="qa-tab" type="button" role="tab" data-target="qa-cases" aria-selected="false">Test Cases</button>
-<button class="qa-tab" type="button" role="tab" data-target="qa-plan" aria-selected="false">Test Plan</button>
+<button class="qa-tab" type="button" role="tab" data-target="qa-bug" aria-selected="false">Bug Report</button>
 <button class="qa-tab" type="button" role="tab" data-target="qa-report" aria-selected="false">Execution Report</button>
 </div>
 <button class="x" id="qaViewerClose" type="button" aria-label="Close artifact viewer">&times;</button>
@@ -231,66 +231,31 @@
 </div>
 <div class="viewer-body qa-body">
 
-<!-- Tab 1: Bug Report -->
-<div class="qa-pane active" id="qa-bug" role="tabpanel">
-<div class="qa-meta-grid">
-<div class="qa-meta-item"><dt>Defect ID</dt><dd>DEF-042</dd></div>
-<div class="qa-meta-item"><dt>Severity</dt><dd><span class="qa-badge high">High</span></dd></div>
-<div class="qa-meta-item"><dt>Priority</dt><dd><span class="qa-badge p1">P1 - Urgent</span></dd></div>
-<div class="qa-meta-item"><dt>Status</dt><dd><span class="qa-badge closed">Verified & Closed</span></dd></div>
-<div class="qa-meta-item"><dt>Module</dt><dd>IPFSService & Blockchain Reconciliation</dd></div>
-<div class="qa-meta-item"><dt>Reporter</dt><dd>Steven Bernabe (QA Lead)</dd></div>
+<!-- Tab 1: Test Plan -->
+<div class="qa-pane active" id="qa-plan" role="tabpanel">
+<div class="qa-card">
+<h4>1. Project Scope & Architecture</h4>
+<p><b>System:</b> ChainGuard — Blockchain-Based Digital Evidence Verification (Capstone Project)</p>
+<p><b>Stack:</b> Laravel, PostgreSQL, Postman, Pinata IPFS, Polygon Smart Contracts.</p>
+<p><b>In-Scope Portals:</b> Police Investigators, Forensics Officers, Prosecutors, Judges, Admins, and Public Auditors.</p>
 </div>
 
 <div class="qa-card">
-<h4>Title & Summary</h4>
-<p><b>[ChainGuard] Pinata IPFS file pin not unpinned when Polygon transaction fails or drops</b></p>
-<p class="muted">When an evidence file is uploaded by a Police Officer, the payload is pinned to IPFS (generating a Pinata CID) prior to the Polygon blockchain minting step. If the blockchain RPC reverts or drops due to gas/network timeout, the system failed to invoke <code>IPFSService::unpin()</code>, leaving orphaned pinned files in Pinata and creating an unlinked storage leak.</p>
-</div>
-
-<div class="qa-card">
-<h4>Environment & Preconditions</h4>
+<h4>2. Testing Methodology</h4>
 <ul>
-<li><b>Environment:</b> Windows 11 Pro, PHP 8.2 / Laravel 11, PostgreSQL 15.2, Pinata IPFS API v3, Polygon Amoy Testnet RPC</li>
-<li><b>Preconditions:</b> User logged in as Police Officer (<code>badge_id: POL-4001</code>, Investigation Dept); Pinata API keys active; blockchain RPC simulator configured for transient drop.</li>
+<li><b>Test Planning & Tracking:</b> Structured sprints using Trello to plan, organize, and monitor QA testing milestones and defect resolution.</li>
+<li><b>Manual & Exploratory Testing:</b> Systematic manual test scenarios across all system portals, comparing actual outputs against expected results.</li>
+<li><b>API & Database Integrity:</b> Validating REST endpoints via Postman and querying PostgreSQL records with SQL to confirm data integrity.</li>
+<li><b>Defect Reporting & Retesting:</b> Logging defect reports with clear severity and reproduction steps; retesting every fix to ensure zero regressions.</li>
 </ul>
 </div>
 
 <div class="qa-card">
-<h4>Steps to Reproduce</h4>
-<ol>
-<li>Navigate to <b>Police Portal &rarr; My Evidence &rarr; Ingest Case File</b>.</li>
-<li>Select surveillance video file <code>case_surveillance_4001.mp4</code> and assign to <code>CASE-4001</code>.</li>
-<li>System uploads and pins to Pinata, returning CID <code>bafkreitest123</code> with file ID <code>file-id-456</code>.</li>
-<li>Simulate Polygon blockchain RPC transaction drop before receipt status confirms.</li>
-<li>Check Pinata dashboard and local PostgreSQL <code>evidence</code> table.</li>
-</ol>
-</div>
-
-<div class="qa-compare">
-<div class="qa-box exp">
-<b>Expected Result</b>
-<p>System catches the blockchain transaction exception, executes <code>IPFSService::unpin('bafkreitest123')</code> via Pinata v3 DELETE endpoint, marks database record as <code>FAILED</code>, and releases the orphaned pin cleanly.</p>
-</div>
-<div class="qa-box act">
-<b>Actual Result</b>
-<p>Database record marked <code>FAILED</code>, but unpin logic was never triggered; the 50MB file remained pinned in Pinata IPFS gateway, consuming storage quota without on-chain ledger confirmation.</p>
-</div>
-</div>
-
-<div class="qa-card">
-<h4>Database Verification Check (SQL)</h4>
-<p class="muted">Executed via PostgreSQL query console to verify record state:</p>
-<code class="sql-code">SELECT id, case_number, filename, cid, tx_hash, blockchain_status 
-FROM evidence 
-WHERE case_number = 'CASE-4001';
--- Defect: blockchain_status was 'FAILED' while CID 'bafkreitest123' remained pinned on Pinata.</code>
-</div>
-
-<div class="qa-card">
-<h4>Resolution & Automated Retest Verification</h4>
-<p><b>Fix implemented:</b> Integrated automated rollback hook in <code>EvidenceBlockchainReconciliationService</code> to call Pinata unpin upon blockchain exception. Validated with automated test suite <code>tests/Feature/IpfsUnpinOnBlockchainFailureTest.php</code>.</p>
-<p><b>Retest result:</b> 10/10 simulated blockchain failure test cycles successfully dispatched <code>DELETE api.pinata.cloud/v3/files/{fileId}</code>. Zero orphaned IPFS files. <b>Marked: Verified & Closed.</b></p>
+<h4>3. Entry & Exit Criteria</h4>
+<ul>
+<li><b>Entry Criteria:</b> Staging environment deployed; database migrations executed; user role accounts and test datasets seeded.</li>
+<li><b>Exit Criteria:</b> 100% of P1 and P2 test cases executed with pass status; zero unresolved critical defects; final sign-off approved.</li>
+</ul>
 </div>
 </div>
 
@@ -373,31 +338,66 @@ WHERE case_number = 'CASE-4001';
 </div>
 </div>
 
-<!-- Tab 3: Test Plan -->
-<div class="qa-pane" id="qa-plan" role="tabpanel">
-<div class="qa-card">
-<h4>1. Project Scope & Architecture</h4>
-<p><b>System:</b> ChainGuard — Blockchain-Based Digital Evidence Verification (Capstone Project)</p>
-<p><b>Stack:</b> Laravel, PostgreSQL, Postman, Pinata IPFS, Polygon Smart Contracts.</p>
-<p><b>In-Scope Portals:</b> Police Investigators, Forensics Officers, Prosecutors, Judges, Admins, and Public Auditors.</p>
+<!-- Tab 3: Bug Report -->
+<div class="qa-pane" id="qa-bug" role="tabpanel">
+<div class="qa-meta-grid">
+<div class="qa-meta-item"><dt>Defect ID</dt><dd>DEF-042</dd></div>
+<div class="qa-meta-item"><dt>Severity</dt><dd><span class="qa-badge high">High</span></dd></div>
+<div class="qa-meta-item"><dt>Priority</dt><dd><span class="qa-badge p1">P1 - Urgent</span></dd></div>
+<div class="qa-meta-item"><dt>Status</dt><dd><span class="qa-badge closed">Verified & Closed</span></dd></div>
+<div class="qa-meta-item"><dt>Module</dt><dd>IPFSService & Blockchain Reconciliation</dd></div>
+<div class="qa-meta-item"><dt>Reporter</dt><dd>Steven Bernabe (QA Lead)</dd></div>
 </div>
 
 <div class="qa-card">
-<h4>2. Testing Methodology</h4>
+<h4>Title & Summary</h4>
+<p><b>[ChainGuard] Pinata IPFS file pin not unpinned when Polygon transaction fails or drops</b></p>
+<p class="muted">When an evidence file is uploaded by a Police Officer, the payload is pinned to IPFS (generating a Pinata CID) prior to the Polygon blockchain minting step. If the blockchain RPC reverts or drops due to gas/network timeout, the system failed to invoke <code>IPFSService::unpin()</code>, leaving orphaned pinned files in Pinata and creating an unlinked storage leak.</p>
+</div>
+
+<div class="qa-card">
+<h4>Environment & Preconditions</h4>
 <ul>
-<li><b>Test Planning & Tracking:</b> Structured sprints using Trello to plan, organize, and monitor QA testing milestones and defect resolution.</li>
-<li><b>Manual & Exploratory Testing:</b> Systematic manual test scenarios across all system portals, comparing actual outputs against expected results.</li>
-<li><b>API & Database Integrity:</b> Validating REST endpoints via Postman and querying PostgreSQL records with SQL to confirm data integrity.</li>
-<li><b>Defect Reporting & Retesting:</b> Logging defect reports with clear severity and reproduction steps; retesting every fix to ensure zero regressions.</li>
+<li><b>Environment:</b> Windows 11 Pro, PHP 8.2 / Laravel 11, PostgreSQL 15.2, Pinata IPFS API v3, Polygon Amoy Testnet RPC</li>
+<li><b>Preconditions:</b> User logged in as Police Officer (<code>badge_id: POL-4001</code>, Investigation Dept); Pinata API keys active; blockchain RPC simulator configured for transient drop.</li>
 </ul>
 </div>
 
 <div class="qa-card">
-<h4>3. Entry & Exit Criteria</h4>
-<ul>
-<li><b>Entry Criteria:</b> Staging environment deployed; database migrations executed; user role accounts and test datasets seeded.</li>
-<li><b>Exit Criteria:</b> 100% of P1 and P2 test cases executed with pass status; zero unresolved critical defects; final sign-off approved.</li>
-</ul>
+<h4>Steps to Reproduce</h4>
+<ol>
+<li>Navigate to <b>Police Portal &rarr; My Evidence &rarr; Ingest Case File</b>.</li>
+<li>Select surveillance video file <code>case_surveillance_4001.mp4</code> and assign to <code>CASE-4001</code>.</li>
+<li>System uploads and pins to Pinata, returning CID <code>bafkreitest123</code> with file ID <code>file-id-456</code>.</li>
+<li>Simulate Polygon blockchain RPC transaction drop before receipt status confirms.</li>
+<li>Check Pinata dashboard and local PostgreSQL <code>evidence</code> table.</li>
+</ol>
+</div>
+
+<div class="qa-compare">
+<div class="qa-box exp">
+<b>Expected Result</b>
+<p>System catches the blockchain transaction exception, executes <code>IPFSService::unpin('bafkreitest123')</code> via Pinata v3 DELETE endpoint, marks database record as <code>FAILED</code>, and releases the orphaned pin cleanly.</p>
+</div>
+<div class="qa-box act">
+<b>Actual Result</b>
+<p>Database record marked <code>FAILED</code>, but unpin logic was never triggered; the 50MB file remained pinned in Pinata IPFS gateway, consuming storage quota without on-chain ledger confirmation.</p>
+</div>
+</div>
+
+<div class="qa-card">
+<h4>Database Verification Check (SQL)</h4>
+<p class="muted">Executed via PostgreSQL query console to verify record state:</p>
+<code class="sql-code">SELECT id, case_number, filename, cid, tx_hash, blockchain_status 
+FROM evidence 
+WHERE case_number = 'CASE-4001';
+-- Defect: blockchain_status was 'FAILED' while CID 'bafkreitest123' remained pinned on Pinata.</code>
+</div>
+
+<div class="qa-card">
+<h4>Resolution & Automated Retest Verification</h4>
+<p><b>Fix implemented:</b> Integrated automated rollback hook in <code>EvidenceBlockchainReconciliationService</code> to call Pinata unpin upon blockchain exception. Validated with automated test suite <code>tests/Feature/IpfsUnpinOnBlockchainFailureTest.php</code>.</p>
+<p><b>Retest result:</b> 10/10 simulated blockchain failure test cycles successfully dispatched <code>DELETE api.pinata.cloud/v3/files/{fileId}</code>. Zero orphaned IPFS files. <b>Marked: Verified & Closed.</b></p>
 </div>
 </div>
 
