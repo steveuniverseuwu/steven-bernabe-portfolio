@@ -266,7 +266,37 @@
     else img.addEventListener('error', swap);
   });
 
-  // ---- Interactive Contact Form Handler (Skills Showcase Challenge Requirement) ----
+  // ---- Interactive Contact Form Handler & High-End Alert Modal ----
+  function getSuccessModal() {
+    return document.getElementById('successModal');
+  }
+
+  function initSuccessModal() {
+    const modal = getSuccessModal();
+    if (!modal || modal._initialized) return;
+    modal._initialized = true;
+
+    const closeBtn = document.getElementById('successModalClose');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        if (typeof modal.close === 'function') modal.close();
+        else modal.removeAttribute('open');
+        root.classList.remove('lock');
+      });
+    }
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        if (typeof modal.close === 'function') modal.close();
+        else modal.removeAttribute('open');
+        root.classList.remove('lock');
+      }
+    });
+
+    modal.addEventListener('close', () => root.classList.remove('lock'));
+  }
+  initSuccessModal();
+
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
@@ -275,6 +305,7 @@
       const email = document.getElementById('contactEmail').value.trim();
       const msg = document.getElementById('contactMessage').value.trim();
       const alertBox = document.getElementById('formAlert');
+      const submitBtn = document.getElementById('contactSubmit');
 
       // Validation check
       if (!name || !email || !msg) {
@@ -287,22 +318,49 @@
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailPattern.test(email)) {
         alertBox.className = 'form-alert error';
-        alertBox.textContent = 'Please enter a valid email address.';
+        alertBox.textContent = 'Please enter a valid work or personal email address.';
         alertBox.style.display = 'block';
         return;
       }
 
-      // Success display
-      alertBox.className = 'form-alert success';
-      alertBox.textContent = `Thank you, ${name}! Your message has been recorded successfully. I will get back to you soon.`;
-      alertBox.style.display = 'block';
+      // Button loading transition for tactile feel
+      const origBtnContent = submitBtn ? submitBtn.innerHTML : '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `
+          <span class="spinner" aria-hidden="true"></span>
+          <span>Delivering...</span>
+        `;
+      }
 
-      // Browser success alert as specified in Mata Technologies challenge instructions
       setTimeout(() => {
-        window.alert(`Thank you, ${name}! Your message has been sent successfully.`);
-      }, 150);
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = origBtnContent;
+        }
 
-      contactForm.reset();
+        // Populate personalized user name in modern modal
+        const alertNameEl = document.getElementById('alertUserName');
+        if (alertNameEl) alertNameEl.textContent = name;
+
+        // Trigger High-End Custom Modal (Challenge Requirement: Success Alert on submit)
+        initSuccessModal();
+        const modal = getSuccessModal();
+        if (modal && typeof modal.showModal === 'function') {
+          root.classList.add('lock');
+          modal.showModal();
+        } else if (modal) {
+          root.classList.add('lock');
+          modal.setAttribute('open', '');
+        }
+
+        // Inline confirmation update
+        alertBox.className = 'form-alert success';
+        alertBox.innerHTML = `<strong>Inquiry Sent!</strong> Thank you, ${name}. Your message has been logged successfully.`;
+        alertBox.style.display = 'block';
+
+        contactForm.reset();
+      }, 350);
     });
   }
 
