@@ -51,6 +51,7 @@ The website is engineered from scratch using semantic **HTML5**, modern **CSS3 (
 * Downloadable PDF buttons for Resume and extended CV.
 
 ### 4. Bonus Features Implemented
+* 🐙 **Dynamic GitHub API Repositories:** Asynchronously queries the GitHub REST API (`https://api.github.com/users/steveuniverseuwu/repos`) to dynamically render active public repositories with descriptions, language tags, and star counts (fulfilling Challenge Bonus Requirement #2).
 * 🌓 **Theme Mode Switcher:** High-contrast Violet Theme and Pink Theme with instant, non-blocking theme switching and persistent `localStorage` preference memory.
 * ⚡ **Zero Framework Overhead:** Ultra-fast load times with pure vanilla code and zero bloated external dependencies.
 * 📱 **Full Mobile Responsiveness:** Built-in responsive breakpoints (`860px`, `820px`, `640px`, `560px`) ensuring a clean experience on mobile, tablet, and desktop screens.
@@ -58,23 +59,24 @@ The website is engineered from scratch using semantic **HTML5**, modern **CSS3 (
 
 ---
 
-## 💻 Local Setup & Development Instructions
+## 💻 Local Setup & Viewing Instructions
 
-To run or inspect this portfolio locally on your machine:
+This website is engineered strictly with native web standards (**Semantic HTML5, Modern CSS3, Vanilla ES6+ JavaScript**) and requires **zero backend installations, zero build steps, and zero external packages**.
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/steveuniverseuwu/steven-bernabe-portfolio.git
-   cd steven-bernabe-portfolio
-   ```
+### Method 1: Instant Direct Launch (Simplest & Recommended)
+No terminal or development server required:
+1. Double-click `index.html` directly (or right-click `index.html` → **Open with** → **Google Chrome**, **Microsoft Edge**, or **Firefox**).
+2. The portfolio will load instantly with all features active: dynamic theme toggling, interactive QA modal dialogs, client-side form validation, and live GitHub REST API fetching.
 
-2. **Open directly in your browser:**
-   * Simply double-click `index.html` to open it in Chrome, Edge, or Firefox.
-   * Or use Python's built-in local development server:
-     ```bash
-     python -m http.server 3000
-     ```
-     Then open `http://localhost:3000` in your web browser.
+### Method 2: Live Server (VS Code / Antigravity IDE)
+If reviewing or inspecting the code inside an editor:
+1. Open the project folder in VS Code or Antigravity IDE.
+2. Right-click `index.html` and click **"Open with Live Server"** (or click **Go Live** on the bottom status bar).
+3. The site opens locally at `http://127.0.0.1:5500` or `http://localhost:5520`.
+
+### Method 3: Live Cloud Deployment
+You can also inspect the production release online without downloading anything:  
+🌐 **Live Deployed Site:** [https://steven-bernabe-portfolio.vercel.app](https://steven-bernabe-portfolio.vercel.app)
 
 ---
 
