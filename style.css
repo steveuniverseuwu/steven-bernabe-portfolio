@@ -319,6 +319,8 @@ html.lock{overflow:hidden}
 .proj-head h3{margin:0;font:700 1.45rem var(--head);color:var(--text)}
 
 .github-section{margin-top:2.5rem;padding:2rem;background:var(--surface);border:1px solid var(--line);border-radius:16px}
+.gh-handle{display:inline-flex;align-items:center;gap:.25rem;padding:.12rem .55rem;margin:0 .2rem;background:var(--soft);border:1px solid var(--line2);border-radius:6px;color:var(--accent);text-decoration:none!important;font-weight:600;font-size:.95em;vertical-align:middle;transition:background .2s ease,border-color .2s ease,color .2s ease,transform .15s ease}
+.gh-handle:hover{background:var(--accent);color:var(--ink);border-color:var(--accent);transform:translateY(-1px);text-decoration:none!important}
 .repo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-top:1.25rem}
 .repo-card{display:flex;flex-direction:column;justify-content:space-between;padding:1.25rem;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;text-decoration:none;color:var(--text);transition:transform .2s ease,background .25s ease,border-color .25s ease}
 :root[data-theme="pink"] .repo-card{background:rgba(255,255,255,.6)}
