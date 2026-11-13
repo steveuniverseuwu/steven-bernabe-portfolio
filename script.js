@@ -409,4 +409,23 @@
       });
   }
 
+
+  // ---- Smart Environment Detection: Show Live Deployed link ONLY when viewed offline/locally ----
+  const isOfflineOrLocal = window.location.protocol === 'file:' || 
+                           window.location.hostname === 'localhost' || 
+                           window.location.hostname === '127.0.0.1';
+
+  if (isOfflineOrLocal) {
+    const localLiveBtn = document.getElementById('localLiveSiteBtn');
+    if (localLiveBtn) {
+      localLiveBtn.style.display = 'inline-flex';
+    }
+  } else {
+    // When live on Vercel, make GitHub repo button the primary 'main' button
+    const repoBtn = document.getElementById('projectRepoBtn');
+    if (repoBtn) {
+      repoBtn.classList.add('main');
+    }
+  }
+
 })();
