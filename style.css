@@ -45,7 +45,7 @@ h1{font:700 clamp(2.6rem,6vw,4.4rem)/1.05 var(--head);letter-spacing:-.02em;marg
 .lead{font-size:1.2rem;color:var(--muted);max-width:34rem;margin:0 0 1.8rem}
 .btns{display:flex;flex-wrap:wrap;gap:.8rem}
 .btns.spaced{margin-bottom:1.6rem}
-.btn{display:inline-block;padding:.75rem 1.3rem;border-radius:8px;font-weight:600;text-decoration:none;border:2px solid var(--accent);color:var(--accent);background:linear-gradient(var(--accent),var(--accent)) no-repeat left/0% 100%;transition:background-size .4s cubic-bezier(.65,0,.35,1),color .3s ease}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:.75rem 1.3rem;border-radius:8px;font-weight:600;text-decoration:none;border:2px solid var(--accent);color:var(--accent);background:linear-gradient(var(--accent),var(--accent)) no-repeat left/0% 100%;transition:background-size .4s cubic-bezier(.65,0,.35,1),color .3s ease;line-height:1}
 .btn:hover{background-size:100% 100%;color:var(--ink)}
 .btn.main{color:var(--ink);background-color:var(--accent);background-image:linear-gradient(var(--accent-hover),var(--accent-hover))}
 
@@ -988,11 +988,22 @@ html.lock{overflow:hidden}
 
 
 .btn svg {
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: .5rem;
+  display: block;
+  width: 1.05rem;
+  height: 1.05rem;
+  margin-right: .55rem;
   flex-shrink: 0;
 }
+.btn span {
+  display: inline-block;
+  line-height: 1;
+}
 .btn .btn-arrow {
-  margin-left: .35rem;
+  margin-left: .45rem;
+  display: inline-block;
+  line-height: 1;
+  transition: transform .2s ease;
+}
+.btn:hover .btn-arrow {
+  transform: translateX(3px);
 }
