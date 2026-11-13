@@ -265,4 +265,90 @@
     if (img.complete && img.naturalWidth === 0) swap();
     else img.addEventListener('error', swap);
   });
+
+  // ---- Interactive Contact Form Handler (Skills Showcase Challenge Requirement) ----
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('contactName').value.trim();
+      const email = document.getElementById('contactEmail').value.trim();
+      const msg = document.getElementById('contactMessage').value.trim();
+      const alertBox = document.getElementById('formAlert');
+
+      // Validation check
+      if (!name || !email || !msg) {
+        alertBox.className = 'form-alert error';
+        alertBox.textContent = 'Please complete all required fields before sending.';
+        alertBox.style.display = 'block';
+        return;
+      }
+
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        alertBox.className = 'form-alert error';
+        alertBox.textContent = 'Please enter a valid email address.';
+        alertBox.style.display = 'block';
+        return;
+      }
+
+      // Success display
+      alertBox.className = 'form-alert success';
+      alertBox.textContent = `Thank you, ${name}! Your message has been recorded successfully. I will get back to you soon.`;
+      alertBox.style.display = 'block';
+
+      // Browser success alert as specified in Mata Technologies challenge instructions
+      setTimeout(() => {
+        window.alert(`Thank you, ${name}! Your message has been sent successfully.`);
+      }, 150);
+
+      contactForm.reset();
+    });
+  }
+
+  // ---- Dynamic GitHub Repositories Fetcher (Bonus Challenge Requirement) ----
+  const repoBox = document.getElementById('githubRepos');
+  if (repoBox) {
+    fetch('https://api.github.com/users/steveuniverseuwu/repos?sort=updated&per_page=6')
+      .then((res) => {
+        if (!res.ok) throw new Error('Network response was not ok');
+        return res.json();
+      })
+      .then((repos) => {
+        if (!Array.isArray(repos) || repos.length === 0) {
+          repoBox.innerHTML = '<p class="repo-empty">No public repositories found.</p>';
+          return;
+        }
+        repoBox.innerHTML = repos.map((repo) => `
+          <a class="repo-card" href="${repo.html_url}" target="_blank" rel="noopener">
+            <div class="repo-top">
+              <svg class="repo-icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg>
+              <strong class="repo-title">${repo.name}</strong>
+            </div>
+            <p class="repo-text">${repo.description || 'Public GitHub repository by Steven Bernabe.'}</p>
+            <div class="repo-foot">
+              <span class="repo-badge">${repo.language || 'Web'}</span>
+              <span class="repo-stat">★ ${repo.stargazers_count}</span>
+              <span class="repo-stat">⑂ ${repo.forks_count}</span>
+            </div>
+          </a>
+        `).join('');
+      })
+      .catch((err) => {
+        // Fallback card if offline or rate-limited
+        repoBox.innerHTML = `
+          <a class="repo-card" href="https://github.com/steveuniverseuwu/steven-bernabe-portfolio" target="_blank" rel="noopener">
+            <div class="repo-top">
+              <svg class="repo-icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg>
+              <strong class="repo-title">steven-bernabe-portfolio</strong>
+            </div>
+            <p class="repo-text">Personal portfolio website showcasing web development and QA test deliverables.</p>
+            <div class="repo-foot">
+              <span class="repo-badge">HTML / CSS / JS</span>
+              <span class="repo-stat">★ 0</span>
+            </div>
+          </a>`;
+      });
+  }
+
 })();
